@@ -15,6 +15,7 @@ export default class MovieService {
         const lastMovieItem = movies[movies.length - 1];
         let id = lastMovieItem.id + 100;
         movie.id = id;
+        movie.count = 0;
         return movies.push(movie);
     }
 

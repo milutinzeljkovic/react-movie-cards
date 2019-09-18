@@ -3,18 +3,27 @@ import PropTypes from 'prop-types';
 import StarRating from '../StarRating';
 import MovieService from '../../services/MovieService';
 import StarRatingComponent from 'react-star-rating-component';
+import Tooltip from "react-power-tooltip";
+
 
 class MovieCard extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            show: false
+        }
+        this.showTooltip = this.showTooltip.bind(this);
     }
 
     onStarClick(nextValue, prevValue, name) {
-        console.log(name,nextValue);
         MovieService.rateMovie(name,nextValue);
         this.forceUpdate();
 
+    }
+
+    showTooltip(bool) {
+        this.setState({ show: bool })
     }
 
     render() {
@@ -38,7 +47,14 @@ class MovieCard extends Component {
                                 onStarClick={this.onStarClick.bind(this)}
                             />
                             </div>
-                            <div className="card-footer-badge float-right badge badge-primary badge-pill">{Math.floor(this.props.movie.rating)}</div>
+                            <div className="card-footer-badge float-right badge  badge-pill" 
+                            onMouseOver={() => this.showTooltip(true)} 
+                            onMouseLeave={() => this.showTooltip(false)}>
+                                {Math.floor(this.props.movie.rating)}
+                                <Tooltip show={this.state.show}>
+                                    <span>{this.props.movie.count}</span>
+                                </Tooltip>
+                            </div>
                         </div>
                     </div>
                 </div>
