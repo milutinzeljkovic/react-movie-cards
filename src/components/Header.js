@@ -8,7 +8,7 @@ const Header = (props) => (
                 <i className="fa fa-film fa-2x text-white my-auto"></i>
                 <div className="h3 ml-3 my-auto text-light" href="/">{props.title}</div>
             </div>
-            <button onClick = {props.handleOpenDialog()}>Add movie</button>
+            <button onClick = {props.handleOpenDialog()}>{props.buttonName}</button>
         </div>
     </nav>
 );
@@ -19,6 +19,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
     title: PropTypes.string,
+    buttonName: PropTypes.string,
     handleOpenDialog: PropTypes.func
 
 };

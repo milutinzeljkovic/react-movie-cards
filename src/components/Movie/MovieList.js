@@ -1,29 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
 
-const getMovies = (movies) => {
-    return (
-        <div className="card-deck">
-            {
-                movies.map(movie => <MovieCard key={movie.id} movie={movie} />)
-            }
-        </div>
-    );
-};
+class MovieList extends Component {
 
-const MovieList = (props) => (
-    <div>
-        {getMovies(props.movies)}
-    </div>
-);
+    constructor(props){
+        super(props);
+
+    }
+
+    getMovies(movies){
+        return (
+            <div className="card-deck">
+                {
+                    movies.map(movie => <MovieCard key={movie.id} movie={movie} handleDeleteMovieCard = {this.props.handleDeleteMovie} />)
+                }
+            </div>
+            );
+        }
+
+
+    render() {
+        return (
+                <div>
+                    {this.getMovies(this.props.movies)}
+                </div>
+        )
+    }
+}
+
 
 MovieList.defaultProps = {
     movies: []
 };
 
 MovieList.propTypes = {
-    movies: PropTypes.array
+    movies: PropTypes.array,
+    handleDeleteMovie: PropTypes.func
 };
 
 export default MovieList;

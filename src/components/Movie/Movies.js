@@ -8,8 +8,16 @@ export default class Movies extends Component {
         super();
 
         this.state = {
-            movies: []
+            movies: MovieService.getMovies()
         };
+        this.deleteMovie = this.deleteMovie.bind(this);
+    }
+
+    deleteMovie(movie){
+        console.log("brisanje");
+        
+        MovieService.deleteMovie(movie);
+        this.forceUpdate();
     }
 
     componentDidMount() {
@@ -17,11 +25,12 @@ export default class Movies extends Component {
     }
 
     render() {
+        console.log(MovieService.getMovies())
         return (
             <div className="container-fluid" style={{marginLeft: '-15px'}}>
                 <div className="d-flex flex-row">                    
                     <div className="col-sm-12">
-                        <MovieList movies={this.state.movies} />
+                        <MovieList movies={this.state.movies} handleDeleteMovie={this.deleteMovie} />
                     </div>
                 </div>
             </div>

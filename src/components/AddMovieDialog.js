@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import MovieService from '../services/MovieService';
+import PropTypes from 'prop-types';
 
 
-export default class AddMovieDialog extends Component {
+class AddMovieDialog extends Component {
 
     constructor(props){
         super(props);
@@ -50,6 +51,8 @@ export default class AddMovieDialog extends Component {
             movie.year = 2019;
             movie.rating = 0.0;
             MovieService.addMovie(movie);
+            this.props.handleCloseDialog();
+            
         }
     }
 
@@ -99,3 +102,9 @@ export default class AddMovieDialog extends Component {
         );
     }
 }
+
+AddMovieDialog.propTypes = {
+    handleCloseDialog: PropTypes.func
+}
+
+export default AddMovieDialog;

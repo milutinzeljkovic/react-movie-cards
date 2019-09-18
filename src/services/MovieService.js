@@ -12,4 +12,9 @@ export default class MovieService {
         movie.id = id;
         return movies.push(movie);
     }
+
+    static deleteMovie(movie) {
+        const index =  movies.findIndex( m => m.id === movie.id);
+        return movies.splice(index,1);
+    }
 }

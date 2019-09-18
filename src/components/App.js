@@ -25,11 +25,13 @@ export default class App extends Component {
     }
 
     render() {
+        console.log("toggle: ",this.state.showDialog);
+        
         return (
             <div>
-                <Header title={this.state.title} handleOpenDialog={() => this.toggleDialog  }/>
+                <Header title={this.state.title} handleOpenDialog={ () => this.toggleDialog } buttonName={this.state.showDialog ? 'Back to movies' : 'Add movie'}/>
                 <div className="mt-5">
-                    { this.state.showDialog ? <AddMovieDialog /> : <Movies />}
+                    { this.state.showDialog ? <AddMovieDialog handleCloseDialog={ this.toggleDialog }/> : <Movies />}
                 </div>
             </div>
         );
