@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import StarRating from '../StarRating';
 import MovieService from '../../services/MovieService';
-
+import StarRatingComponent from 'react-star-rating-component';
 
 class MovieCard extends Component {
 
@@ -10,6 +10,12 @@ class MovieCard extends Component {
         super(props);
     }
 
+    onStarClick(nextValue, prevValue, name) {
+        console.log(name,nextValue);
+        MovieService.rateMovie(name,nextValue);
+        this.forceUpdate();
+
+    }
 
     render() {
         return (
@@ -25,9 +31,14 @@ class MovieCard extends Component {
                     <div className="card-footer">
                         <div className="clearfix">
                             <div className="float-left mt-1">
-                                <StarRating rating={this.props.movie.rating} />
+                            <StarRatingComponent 
+                                name={this.props.movie.id} 
+                                starCount={5}
+                                value={this.props.movie.rating}
+                                onStarClick={this.onStarClick.bind(this)}
+                            />
                             </div>
-                            <div className="card-footer-badge float-right badge badge-primary badge-pill">{this.props.movie.rating}</div>
+                            <div className="card-footer-badge float-right badge badge-primary badge-pill">{Math.floor(this.props.movie.rating)}</div>
                         </div>
                     </div>
                 </div>

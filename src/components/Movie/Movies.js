@@ -13,12 +13,12 @@ export default class Movies extends Component {
         this.deleteMovie = this.deleteMovie.bind(this);
     }
 
-    deleteMovie(movie){
-        console.log("brisanje");
-        
+    deleteMovie(movie){       
         MovieService.deleteMovie(movie);
         this.forceUpdate();
     }
+
+
 
     componentDidMount() {
         this.setState(() => ({ movies: MovieService.getMovies() }));

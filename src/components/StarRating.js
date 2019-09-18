@@ -32,7 +32,8 @@ const StarRating = (props) => {
             <div style={styles.starsOuter}>
                 <div style={containerStyle}>
                     <div style={styles.starsEmptyInner}>
-                        <i className="fa fa-star-o fa-lg" style={styles.star}></i>
+                        <i className="fa fa-star-o fa-lg" style={styles.star} onClick = {()=>{console.log('klik na zvezdy');
+                        }}></i>
                         <i className="fa fa-star-o fa-lg" style={styles.star}></i>
                         <i className="fa fa-star-o fa-lg" style={styles.star}></i>
                         <i className="fa fa-star-o fa-lg" style={styles.star}></i>
